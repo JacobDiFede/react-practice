@@ -1,3 +1,3 @@
-export const user = {
-    name: "jacob",
-}
+// export const user = {
+//     name: "jacob",
+// }
