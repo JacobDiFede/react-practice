@@ -1,15 +1,13 @@
-
-
 let myMovieList;
 let myMovie;
 
 export async function fetchMovieDataByName(title) {
-    const response = await fetch(`http://www.omdbapi.com/?s=${title}&apikey=b1114fdf`);
+    const response = await fetch(`http://www.omdbapi.com/?s=${title}&apikey=`);
     myMovieList = response.json();
 }
 
 export async function fetchMovieDataById(id) {
-    const response = await fetch(`http://www.omdbapi.com/?i=${id}&apikey=b1114fdf`);
+    const response = await fetch(`http://www.omdbapi.com/?i=${id}&apikey=`);
     myMovie = response.json();
 }
 
