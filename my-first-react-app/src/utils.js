@@ -1,18 +1,25 @@
-let myMovieList;
-let myMovie;
+// let myMovieList;
+// let myMovie;
 
-export async function fetchMovieDataByName(title) {
-    const response = await fetch(`http://www.omdbapi.com/?s=${title}&apikey=`);
-    myMovieList = response.json();
-}
+// export async function fetchMovieDataByName(title) {
+//     const response = await fetch(`http://www.omdbapi.com/?s=${title}&apikey=`);
+//     myMovieList = response.json();
+// }
 
-export async function fetchMovieDataById(id) {
-    const response = await fetch(`http://www.omdbapi.com/?i=${id}&apikey=`);
-    myMovie = response.json();
-}
+// export async function fetchMovieDataById(id) {
+//     const response = await fetch(`http://www.omdbapi.com/?i=${id}&apikey=`);
+//     myMovie = response.json();
+// }
 
-await fetchMovieDataByName("star wars");
-await fetchMovieDataById("tt0080684");
+// await fetchMovieDataByName("star wars");
+// await fetchMovieDataById("tt0080684");
 
-console.log(await myMovieList);
-console.log(await myMovie);
+// console.log(await myMovieList);
+// console.log(await myMovie);
+
+// b1114fdf
+
+// const movie = {"Title":"Star Wars: Episode IV - A New Hope","Year":"1977","Rated":"PG","Released":"25 May 1977","Runtime":"121 min","Genre":"Action, Adventure, Fantasy, Sci-Fi","Director":"George Lucas","Writer":"George Lucas","Actors":"Mark Hamill, Harrison Ford, Carrie Fisher, Peter Cushing","Plot":"Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.","Language":"English","Country":"USA, UK","Awards":"Won 6 Oscars. Another 58 wins & 29 nominations.","Poster":"https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"8.6/10"},{"Source":"Rotten Tomatoes","Value":"92%"},{"Source":"Metacritic","Value":"90/100"}],"Metascore":"90","imdbRating":"8.6","imdbVotes":"1,255,061","imdbID":"tt0076759","Type":"movie","DVD":"10 Oct 2016","BoxOffice":"$460,998,507","Production":"Lucasfilm Ltd.","Website":"N/A","Response":"True"}
+
+// <MovieDetails movie={movie}/>
+
