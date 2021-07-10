@@ -1,5 +1,4 @@
 import './App.css';
-import { ModalComponent } from './components/ModalComponent';
 import { MovieDetails } from './components/MovieDetails'
 
 function App() {
