@@ -1,39 +1,48 @@
-export const MovieDetails = ({ movie }) => {
-    const {
-        Poster,
-        Title,
-        Rated,
-        Runtime,
-        Genre,
-        Plot,
-        Actors,
-        imdbRating,
-    } = movie;
+import { useState, useEffect } from "react";
 
-    return (
-        <div className="movie-details-container">
-            <img src={Poster} alt={Title} />
-            <div className="information-container"> 
-                <div className="title-container">
-                    <h2>{Title}</h2>
-                    <span>{imdbRating}</span>
-                </div>
-                <div className="button-container">
-                    <div className="button">{ Rated }</div>
-                    <div className="button">{ Runtime }</div>
-                    <div className="button">{ Genre }</div>
-                </div>
-                <div className="description-container">
-                    <h3>Plot</h3>
-                    <p>{ Plot }</p>
-                </div>
-                <div className="description-container">
-                    <h3>Actors</h3>
-                    <p>{ Actors }</p>
+import MovieService from "../services/movie.Service";
+
+export const MovieDetails = ({ id }) => {
+    const [movie, setMovie] = useState();
+
+    const movieService = new MovieService();
+
+    useEffect(() => {
+        getMovieById(id);
+    }, [id])
+
+    const getMovieById = async (id) => {
+        const movie = await movieService.getMovieById(id);
+
+        setMovie(movie);
+    }
+
+    return movie
+        ? (
+            <div className="movie-details-container">
+                <img src={movie.Poster} alt={movie.Title} />
+                <div className="information-container"> 
+                    <div className="title-container">
+                        <h2>{movie.Title}</h2>
+                        <span>{movie.imdbRating}</span>
+                    </div>
+                    <div className="button-container">
+                        <div className="button">{ movie.Rated }</div>
+                        <div className="button">{ movie.Runtime }</div>
+                        <div className="button">{ movie.Genre }</div>
+                    </div>
+                    <div className="description-container">
+                        <h3>Plot</h3>
+                        <p>{ movie.Plot }</p>
+                    </div>
+                    <div className="description-container">
+                        <h3>Actors</h3>
+                        <p>{ movie.Actors }</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+        : null;
 }
 
 // const MovieCard = (props) => {
