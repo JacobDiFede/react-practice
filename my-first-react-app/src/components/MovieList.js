@@ -31,7 +31,7 @@ export const MovieList = () => {
             <div className="movie-card" key={index}>
                 <img src={movie.Poster} alt={`${movie.Title} poster`}/>
                 <h5>{movie.Title}</h5>
-                <button onClick={ () => setSelectedMovie(movie.imdbID)}>show details</button>
+                <button onClick={ () => setSelectedMovie(movie.imdbID)}>Show Details</button>
             </div>
         ))
 };
