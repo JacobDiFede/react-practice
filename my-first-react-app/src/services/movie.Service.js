@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const apiKey = `b1114fdf`;
+
 export default class MovieService {
     async getMoviesByTitle(title) {
         const url = `https://www.omdbapi.com/?s=${title}&apikey=${apiKey}`;

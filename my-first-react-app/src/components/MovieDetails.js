@@ -19,30 +19,40 @@ export const MovieDetails = ({ id }) => {
 
     return movie
         ? (
-            <div className="movie-details-container">
-                <img src={movie.Poster} alt={movie.Title} />
-                <div className="information-container"> 
-                    <div className="title-container">
-                        <h2>{movie.Title}</h2>
-                        <span>{movie.imdbRating}</span>
-                    </div>
-                    <div className="button-container">
-                        <div className="button">{ movie.Rated }</div>
-                        <div className="button">{ movie.Runtime }</div>
-                        <div className="button">{ movie.Genre }</div>
-                    </div>
-                    <div className="description-container">
-                        <h3>Plot</h3>
-                        <p>{ movie.Plot }</p>
-                    </div>
-                    <div className="description-container">
-                        <h3>Actors</h3>
-                        <p>{ movie.Actors }</p>
-                    </div>
+        <div>
+            <img src={movie.Poster} alt={`${movie.Title} poster`}/>
+            <div>
+                <div>
+                    <h2>{movie.Title}</h2>
+                    <span>
+                        { movie.imdbRating }
+                    </span>
+                </div>
+                <div>
+                    <span>
+                        { movie.Rated }
+                    </span>
+                    <span>
+                        { movie.Runtime }
+                    </span>
+                    <span>
+                        { movie.Genre }
+                    </span>
+                </div>
+                <div>
+                    <h4>Plot</h4>
+                    { movie.Plot }
+                </div>
+                <div>
+                    <h4>Actors</h4>
+                    { movie.Actors }
                 </div>
             </div>
+        </div>
         )
-        : null;
+        : (
+            <h2>Loading...</h2>
+        );
 }
 
 // const MovieCard = (props) => {
@@ -79,3 +89,26 @@ export const MovieDetails = ({ id }) => {
 //     </div>,
 //     document.getElementById('root')
 //   )
+
+{/* <div className="movie-details-container">
+                <img src={movie.Poster} alt={movie.Title} />
+                <div className="information-container"> 
+                    <div className="title-container">
+                        <h2>{movie.Title}</h2>
+                        <span>{movie.imdbRating}</span>
+                    </div>
+                    <div className="button-container">
+                        <div className="button">{ movie.Rated }</div>
+                        <div className="button">{ movie.Runtime }</div>
+                        <div className="button">{ movie.Genre }</div>
+                    </div>
+                    <div className="description-container">
+                        <h3>Plot</h3>
+                        <p>{ movie.Plot }</p>
+                    </div>
+                    <div className="description-container">
+                        <h3>Actors</h3>
+                        <p>{ movie.Actors }</p>
+                    </div>
+                </div>
+            </div> */}
