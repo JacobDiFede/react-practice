@@ -15,7 +15,7 @@ export const MovieList = () => {
     const movieService = new MovieService();
 
     useEffect(() => {
-        getMoviesByTitle('John Wick');
+        getMoviesByTitle('Star Wars');
     }, [])
 
     const getMoviesByTitle = async (title) => {
