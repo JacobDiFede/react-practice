@@ -90,7 +90,7 @@ export const MovieDetails = ({ id }) => {
 //     document.getElementById('root')
 //   )
 
-{/* <div className="movie-details-container">
+/* <div className="movie-details-container">
                 <img src={movie.Poster} alt={movie.Title} />
                 <div className="information-container"> 
                     <div className="title-container">
@@ -111,4 +111,4 @@ export const MovieDetails = ({ id }) => {
                         <p>{ movie.Actors }</p>
                     </div>
                 </div>
-            </div> */}
+            </div> */
