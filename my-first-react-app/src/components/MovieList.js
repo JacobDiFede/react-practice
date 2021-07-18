@@ -38,7 +38,7 @@ export const MovieList = () => {
 
     return (
         <div className="movie-list-container">
-            {  !selectedMovie && movieData && renderMovieList() }
+            { movieData && renderMovieList() }
             { selectedMovie && (
                 <Modal showModal={!!selectedMovie} closeModal={closeModal}>
                     <MovieDetails id={selectedMovie}/>
