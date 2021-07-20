@@ -1,14 +1,18 @@
 import './App.css';
-import { MovieList } from './components/MovieList';
-// import { Parent } from './components/Parent'
+import { Pagination } from './components/Pagination'
+
 function App() {
 
   return (
     <div className="App">
-      <MovieList/>
-      {/* <Parent/> */}
+      <Pagination/>
     </div>
   );
 }
 
 export default App;
+
+// import { MovieList } from './components/MovieList';
+// import { Parent } from './components/Parent'
+/* <MovieList/> */
+/* <Parent/> */

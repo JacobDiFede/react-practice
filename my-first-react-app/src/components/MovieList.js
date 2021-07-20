@@ -1,30 +1,52 @@
-import {
-    useState,
-    useEffect
-} from 'react';
-
+import { useState } from 'react';
 import { Modal } from './Modal';
 import { MovieDetails } from './MovieDetails';
-
+import { SearchBar } from './SearchBar';
 import MovieService from '../services/movie.Service';
-
 
 export const MovieList = () => {
     const [movieData, setMovieData] = useState();
     const [selectedMovie, setSelectedMovie] = useState();
     const movieService = new MovieService();
-
-    useEffect(() => {
-        getMoviesByTitle('Star Wars');
-    }, [])
+    const [pages, setPages] = useState();
+    const [movieTitle, setMovieTitle] = useState();
+    const [currentPage, setCurrentPage] = useState();
 
     const getMoviesByTitle = async (title) => {
+        setMovieTitle(title);
         const movieList = await movieService.getMoviesByTitle(title);
 
+        setPages = Math.ceil(movieList.totalResults / 10);
+        setMovieData(movieList.Search);
+    }
+
+    const getMoviesByPage = async (page) => {
+        setCurrentPage(page);
+        const movieList = await movieService.getMoviesByTitle(movieTitle, page);
+        console.log("movieListByPage: ", movieList);
         setMovieData(movieList.Search);
     }
 
     const closeModal = () => setSelectedMovie(null);
+
+    const onSearch = (title) => {
+        getMoviesByTitle(title);
+    }
+
+    const renderPagination = () => {
+        return (
+            <div>
+                {
+                    [...pages].forEach((index) => {
+                        <button
+                            onClick={() => this.getMoviesByPage( index + 1)}
+                            disabled={index + 1 === currentPage}
+                        >{ index + 1 }</button>
+                    })
+                }
+            </div>
+        )
+    }
 
     const renderMovieList = () => {
         return movieData.map((movie, index) => (
@@ -38,6 +60,7 @@ export const MovieList = () => {
 
     return (
         <div className="movie-list-container">
+            <SearchBar onSearch={onSearch}/>
             { movieData && renderMovieList() }
             { selectedMovie && (
                 <Modal showModal={!!selectedMovie} closeModal={closeModal}>
