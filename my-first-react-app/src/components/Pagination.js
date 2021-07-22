@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import RBPagination from 'react-bootstrap/Pagination'
+
 export const Pagination = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const restrictedValues = [1, 2, 48, 49, 50];
