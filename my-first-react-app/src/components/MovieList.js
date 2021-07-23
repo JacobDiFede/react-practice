@@ -16,7 +16,7 @@ export const MovieList = () => {
         setMovieTitle(title);
         const movieList = await movieService.getMoviesByTitle(title);
 
-        setPages = Math.ceil(movieList.totalResults / 10);
+        setPages(Math.ceil(movieList.totalResults / 10));
         setMovieData(movieList.Search);
     }
 
@@ -34,15 +34,19 @@ export const MovieList = () => {
     }
 
     const renderPagination = () => {
+        let PaginationButton = [];
+        for(let i = 0; i < pages; i++) {
+            PaginationButton.push(
+                <button
+                        onClick={() => getMoviesByPage( i + 1)}
+                        disabled={i + 1 === currentPage}
+                        >{ i + 1 }</button>
+            )
+        }
         return (
             <div>
                 {
-                    [...pages].forEach((index) => {
-                        <button
-                            onClick={() => this.getMoviesByPage( index + 1)}
-                            disabled={index + 1 === currentPage}
-                        >{ index + 1 }</button>
-                    })
+                    PaginationButton
                 }
             </div>
         )
@@ -67,6 +71,7 @@ export const MovieList = () => {
                     <MovieDetails id={selectedMovie}/>
                 </Modal>
             ) }
+            {pages && renderPagination()}
         </div>
     )
 }
