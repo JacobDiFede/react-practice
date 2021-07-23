@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Modal } from './Modal';
 import { MovieDetails } from './MovieDetails';
 import { SearchBar } from './SearchBar';
 import MovieService from '../services/movie.Service';
+import { MovieCard } from './MovieCard';
+import UserMovieListService from '../services/userMovieList.service';
 
 export const MovieList = () => {
     const [movieData, setMovieData] = useState();
     const [selectedMovie, setSelectedMovie] = useState();
     const movieService = new MovieService();
+    const userMovieListService = new UserMovieListService();
     const [pages, setPages] = useState();
     const [movieTitle, setMovieTitle] = useState();
     const [currentPage, setCurrentPage] = useState();
@@ -27,6 +30,10 @@ export const MovieList = () => {
         setMovieData(movieList.Search);
     }
 
+    const addMovieToUserList = (movie) => {
+        userMovieListService.addMovieToList(movie);
+    }
+
     const closeModal = () => setSelectedMovie(null);
 
     const onSearch = (title) => {
@@ -38,9 +45,9 @@ export const MovieList = () => {
         for(let i = 0; i < pages; i++) {
             PaginationButton.push(
                 <button
-                        onClick={() => getMoviesByPage( i + 1)}
-                        disabled={i + 1 === currentPage}
-                        >{ i + 1 }</button>
+                    onClick={() => getMoviesByPage( i + 1)}
+                    disabled={i + 1 === currentPage}
+                >{ i + 1 }</button>
             )
         }
         return (
@@ -54,11 +61,7 @@ export const MovieList = () => {
 
     const renderMovieList = () => {
         return movieData.map((movie, index) => (
-            <div className="movie-card" key={index}>
-                <img src={movie.Poster} alt={`${movie.Title} poster`}/>
-                <h5>{movie.Title}</h5>
-                <button onClick={ () => setSelectedMovie(movie.imdbID)}>Show Details</button>
-            </div>
+            <MovieCard movie={movie} setSelectedMovie={setSelectedMovie} addMovieToUserList={addMovieToUserList}/>
         ))
 };
 
