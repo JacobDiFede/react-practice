@@ -5,6 +5,7 @@ import { SearchBar } from './SearchBar';
 import MovieService from '../services/movie.Service';
 import { MovieCard } from './MovieCard';
 import UserMovieListService from '../services/userMovieList.service';
+import { Pagination } from './Pagination';
 
 export const MovieList = () => {
     const [movieData, setMovieData] = useState();

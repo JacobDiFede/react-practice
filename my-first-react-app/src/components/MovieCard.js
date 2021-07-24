@@ -7,7 +7,9 @@ export const MovieCard = ({ movie, setSelectedMovie, addMovieToUserList }) => {
             <img src={movie.Poster} alt={`${movie.Title} poster`}/>
             <h5>{movie.Title}</h5>
             <button onClick={ () => setSelectedMovie(movie.imdbID)}>Show Details</button>
+            { addMovieToUserList && 
             <button onClick={ () => addMovieToUserList(movie)}>Add To My List</button>
+            }
         </div>
     )
 }

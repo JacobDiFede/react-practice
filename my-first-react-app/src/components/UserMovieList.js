@@ -2,8 +2,10 @@ import UserMovieListService from "../services/userMovieList.service";
 import { useState, useEffect } from "react";
 import { MovieCard } from "./MovieCard";
 import { MovieDetails } from "./MovieDetails";
+import { Modal } from "./Modal";
 
 export const UserMovieList = () => {
+    const [selectedMovie, setSelectedMovie] = useState();
     const [movieList, setMovieList] = useState();
     const userMovieListService = new UserMovieListService();
 
@@ -16,6 +18,8 @@ export const UserMovieList = () => {
         setMovieList(userMovieList);
     }
 
+    const closeModal = () => setSelectedMovie(null);
+
     return (
         <div>
             {console.log(movieList)}
@@ -23,7 +27,12 @@ export const UserMovieList = () => {
                 movieList && movieList.list.map((movie) => {
                     return (
                         <div>
-                            <MovieCard movie={movie}/>
+                            <MovieCard movie={movie} selectedMovie={selectedMovie} setSelectedMovie={setSelectedMovie} />
+                            { selectedMovie && (
+                            <Modal showModal={!!selectedMovie} closeModal={closeModal}>
+                                <MovieDetails id={selectedMovie}/>
+                            </Modal>
+                            ) }
                         </div>
                     )
                 })
