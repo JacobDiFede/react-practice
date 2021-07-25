@@ -14,7 +14,7 @@ export const MovieList = () => {
     const userMovieListService = new UserMovieListService();
     const [pages, setPages] = useState();
     const [movieTitle, setMovieTitle] = useState();
-    const [currentPage, setCurrentPage] = useState();
+    const [currentPage, setCurrentPage] = useState(1);
 
     const getMoviesByTitle = async (title) => {
         setMovieTitle(title);
@@ -24,7 +24,7 @@ export const MovieList = () => {
     }
 
     const getMoviesByPage = async (page) => {
-        setPages(page);
+        setCurrentPage(page);
         const movieList = await movieService.getMoviesByTitle(movieTitle, page);
         setMovieData(movieList.Search);
     }
