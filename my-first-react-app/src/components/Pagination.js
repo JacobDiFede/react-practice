@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import RBPagination from 'react-bootstrap/Pagination'
 
-export const Pagination = () => {
-    const [currentPage, setCurrentPage] = useState(1);
-    const restrictedValues = [1, 2, 48, 49, 50];
+const Pagination = ({pages, getMoviesByPage, currentPage}) => {
+    const restrictedValues = [1, 2, pages - 2, pages - 1, pages];
     const PaginationButton = ({ page }) => (
         <button
             disabled={page === currentPage}
-            onClick={() => setCurrentPage(page)}
+            onClick={() => getMoviesByPage(page)}
         >{ `${page}` }</button>
     );
     const renderButtonsConditionally = (condition) => (
@@ -25,14 +24,14 @@ export const Pagination = () => {
         <div>
             <div>
                 <button
-                    onClick={() => setCurrentPage(currentPage - 1)}
+                    onClick={() => getMoviesByPage(currentPage - 1)}
                     disabled={currentPage  === 1}>
                     Back
                 </button>
                 <span>Page {currentPage}</span>
                 <button
-                    onClick={() => setCurrentPage(currentPage + 1)}
-                    disabled={currentPage === 50}>
+                    onClick={() => getMoviesByPage(currentPage + 1)}
+                    disabled={currentPage === pages}>
                     Forward
                 </button>
             </div>
@@ -40,15 +39,16 @@ export const Pagination = () => {
                 <PaginationButton page={1}/>
                 <PaginationButton page={2}/>
                 <PaginationButton page={3}/>
-                { currentPage !== 4 && <span>...</span> }
+                { currentPage > 4 && <span>...</span> }
                 {
                     renderButtonsConditionally(!restrictedValues.includes(currentPage))
                 }
-                { currentPage !== 47 && <span>...</span> }
-                <PaginationButton page={48}/>
-                <PaginationButton page={49}/>
-                <PaginationButton page={50}/>
+                { currentPage !== pages - 3 && <span>...</span> }
+                <PaginationButton page={pages - 2}/>
+                <PaginationButton page={pages - 1}/>
+                <PaginationButton page={pages}/>
             </div>
         </div>
     )
 }
+export default Pagination;

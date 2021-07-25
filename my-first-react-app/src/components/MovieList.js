@@ -5,7 +5,7 @@ import { SearchBar } from './SearchBar';
 import MovieService from '../services/movie.Service';
 import { MovieCard } from './MovieCard';
 import UserMovieListService from '../services/userMovieList.service';
-import { Pagination } from './Pagination';
+import Pagination from './Pagination';
 
 export const MovieList = () => {
     const [movieData, setMovieData] = useState();
@@ -19,15 +19,13 @@ export const MovieList = () => {
     const getMoviesByTitle = async (title) => {
         setMovieTitle(title);
         const movieList = await movieService.getMoviesByTitle(title);
-
         setPages(Math.ceil(movieList.totalResults / 10));
         setMovieData(movieList.Search);
     }
 
     const getMoviesByPage = async (page) => {
-        setCurrentPage(page);
+        setPages(page);
         const movieList = await movieService.getMoviesByTitle(movieTitle, page);
-        console.log("movieListByPage: ", movieList);
         setMovieData(movieList.Search);
     }
 
@@ -41,31 +39,11 @@ export const MovieList = () => {
         getMoviesByTitle(title);
     }
 
-    const renderPagination = () => {
-        let PaginationButton = [];
-        for(let i = 0; i < pages; i++) {
-            PaginationButton.push(
-                <button
-                    onClick={() => getMoviesByPage( i + 1)}
-                    disabled={i + 1 === currentPage}
-                >{ i + 1 }</button>
-            )
-        }
-        return (
-            <div>
-                {
-                    PaginationButton
-                }
-            </div>
-        )
-    }
-
     const renderMovieList = () => {
         return movieData.map((movie, index) => (
             <MovieCard movie={movie} setSelectedMovie={setSelectedMovie} addMovieToUserList={addMovieToUserList}/>
         ))
 };
-
     return (
         <div className="movie-list-container">
             <SearchBar onSearch={onSearch}/>
@@ -75,7 +53,9 @@ export const MovieList = () => {
                     <MovieDetails id={selectedMovie}/>
                 </Modal>
             ) }
-            {pages && renderPagination()}
+            { pages &&
+                <Pagination pages={pages} getMoviesByPage={getMoviesByPage} currentPage={currentPage}/>
+            }
         </div>
     )
 }
