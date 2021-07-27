@@ -1,13 +1,8 @@
-import MovieService from "./movie.Service";
-
-const movieService = new MovieService();
 
 export default class UserMovieListService {
     addMovieToList(movie) {
 
         let movieList = localStorage.getItem('movieList');
-
-        console.log(movieList);
 
         if (movieList) {
             movieList = JSON.parse(movieList);
@@ -18,6 +13,14 @@ export default class UserMovieListService {
 
         localStorage.setItem('movieList', JSON.stringify(movieList));
     }
+
+    removeMovieFromList(id) {
+        const movieList= JSON.parse(localStorage.getItem('movieList'));
+        const updatedList = movieList.list.filter((movie) => movie.id !== id);
+        movieList.list = updatedList;
+        localStorage.setItem('movieList', JSON.stringify(updatedList));
+    }  
+
     getMovieList() {
         let movieList = localStorage.getItem('movieList');
         if (!movieList) return null;

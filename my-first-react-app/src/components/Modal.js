@@ -1,3 +1,5 @@
+import Button from 'react-bootstrap/Button';
+
 export const Modal = ({ children, showModal, closeModal }) => {
 
 
@@ -6,9 +8,10 @@ export const Modal = ({ children, showModal, closeModal }) => {
             <div style={{position:"fixed", top:"10vh", left:"0", background:"white", overflow:"auto", height:"80vh", border:"solid 1px black"}}>
                 <h2>Modal</h2>
                 { children }
-                <button
+                <Button
+                    variant="danger"
                     onClick={closeModal}
-                >Close</button>
+                >Close</Button>
             </div>
         )
         : null;

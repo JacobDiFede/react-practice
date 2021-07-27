@@ -6,7 +6,7 @@ import { Modal } from "./Modal";
 
 export const UserMovieList = () => {
     const [selectedMovie, setSelectedMovie] = useState();
-    const [movieList, setMovieList] = useState();
+    const [movieList, setMovieList] = useState([]);
     const userMovieListService = new UserMovieListService();
 
     useEffect(() => {
@@ -15,19 +15,30 @@ export const UserMovieList = () => {
 
     const getUserMovieList = () => {
         const userMovieList = userMovieListService.getMovieList();
-        setMovieList(userMovieList);
+        setMovieList(userMovieList ? userMovieList.list : []); 
     }
 
     const closeModal = () => setSelectedMovie(null);
 
+    const deleteMovieFromList = (movie) => {
+        const movieList = JSON.parse(localStorage.getItem('movieList'));
+        const updatedList= movieList.list.filter((movieFromList) => movieFromList.imdbID !== movie.imdbID);
+        if (updatedList.length) {
+            movieList.list = updatedList;
+            localStorage.setItem('movieList', JSON.stringify(movieList));
+        } else {
+            localStorage.removeItem('movieList');
+        }
+        setMovieList(updatedList);
+    }
+
     return (
         <div>
-            {console.log(movieList)}
             {
-                movieList && movieList.list.map((movie) => {
+                movieList && movieList.map((movie) => {
                     return (
                         <div>
-                            <MovieCard movie={movie} selectedMovie={selectedMovie} setSelectedMovie={setSelectedMovie} />
+                            <MovieCard movie={movie} selectedMovie={selectedMovie} setSelectedMovie={setSelectedMovie} onDeleteClick={deleteMovieFromList} />
                             { selectedMovie && (
                             <Modal showModal={!!selectedMovie} closeModal={closeModal}>
                                 <MovieDetails id={selectedMovie}/>

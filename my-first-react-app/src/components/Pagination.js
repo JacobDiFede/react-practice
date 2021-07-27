@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import RBPagination from 'react-bootstrap/Pagination'
 
 const Pagination = ({pages, getMoviesByPage, currentPage}) => {
     const restrictedValues = [1, 2, pages - 2, pages - 1, pages];

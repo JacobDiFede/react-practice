@@ -1,14 +1,24 @@
-import { useState } from "react"
-import { MovieDetails } from "./MovieDetails"
+import Button from 'react-bootstrap/Button';
 
-export const MovieCard = ({ movie, setSelectedMovie, addMovieToUserList }) => {
+export const MovieCard = ({ movie, setSelectedMovie, addMovieToUserList, onDeleteClick }) => {
     return (
         <div className="movie-card" key={movie.imdbID}>
             <img src={movie.Poster} alt={`${movie.Title} poster`}/>
             <h5>{movie.Title}</h5>
-            <button onClick={ () => setSelectedMovie(movie.imdbID)}>Show Details</button>
+            <Button 
+                variant="info"
+                onClick={ () => setSelectedMovie(movie.imdbID)}>Show Details</Button>
             { addMovieToUserList && 
-            <button onClick={ () => addMovieToUserList(movie)}>Add To My List</button>
+            <Button 
+                variant="success"
+                onClick={ () => addMovieToUserList(movie)}>Add To My List</Button>
+            }
+            {
+                onDeleteClick &&
+                <Button 
+                    variant="danger"
+                    onClick={ () => onDeleteClick(movie)}
+                >Remove From List</Button>
             }
         </div>
     )

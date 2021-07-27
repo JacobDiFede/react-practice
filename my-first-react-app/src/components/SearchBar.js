@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react"
+import Button from 'react-bootstrap/Button';
+import { useState } from "react"
 
 export const SearchBar = ({ onSearch }) => {
     const [title, setTitle] = useState();
@@ -18,7 +19,9 @@ export const SearchBar = ({ onSearch }) => {
                         name="title"
                         onChange={(e) => setTitle(e.target.value)}
                     />
-                    <button disabled={ !title }>Search</button>
+                    <Button 
+                        variant="primary"
+                        disabled={ !title }>Search</Button>
                  </div>
             </form>
         </div>
