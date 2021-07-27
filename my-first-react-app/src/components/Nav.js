@@ -7,7 +7,7 @@ const Nav = () => {
         <Navbar bg="light">
             <Container>
                 <Navbar.Brand>
-                    Movie Data Base Tool
+                    Movie Database Tool
                 </Navbar.Brand>
                 <Navbar.Collapse>
                     <RBNav.Link href="/react-practice">Movie Search</RBNav.Link>
