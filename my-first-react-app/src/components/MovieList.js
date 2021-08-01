@@ -41,7 +41,7 @@ export const MovieList = () => {
 
     const renderMovieList = () => {
         return movieData.map((movie, index) => (
-            <MovieCard movie={movie} setSelectedMovie={setSelectedMovie} addMovieToUserList={addMovieToUserList}/>
+            <MovieCard movie={movie} setSelectedMovie={setSelectedMovie} addMovieToUserList={addMovieToUserList} MovieList={MovieList}/>
         ))
 };
     return (
